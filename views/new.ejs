@@ -1,0 +1,32 @@
+<%- include('partials/header') -%>
+<div class="container mt-5 w-50">
+  <h2 class="mb-4 text-center">Ajouter un employé</h2>
+
+  <form action="/employee/new" method="POST">
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      placeholder="Nom de l'employé"
+    />
+
+    <input
+      type="text"
+      name="designation"
+      class="form-control"
+      placeholder="Fonction de l'employé"
+    />
+
+    <input
+      type="text"
+      name="salary"
+      class="form-control"
+      placeholder="Salaire de l'employé"
+    />
+
+    <button type="submit" class="btn btn-primary btn-block mt-3">
+      Ajouter à la base de données
+    </button>
+  </form>
+</div>
+<%- include('partials/footer') -%>

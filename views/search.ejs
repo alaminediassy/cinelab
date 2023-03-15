@@ -1,0 +1,42 @@
+<%- include('partials/header') -%>
+
+<div class="container mt-5 w-50">
+
+    <h2 class="mb-4">Chercher un employé</h2>
+
+    <form action="/employee" method="GET">
+        <input type="text" name="name" class="form-control" placeholder="Nom de l'employé">
+
+        <button type="submit" class="btn btn-primary btn-block mt-3">Chercher dans la base de données</button>
+
+    </form>
+
+    <% if(employee) { %>
+    <h4 class="text-danger my-4">Résultat de la recherche: </h4>
+    <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Prénom et Nom</th>
+                <th>Fonction</th>
+                <th>Salaire</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td><%= employee.name %></td>
+                <td><%= employee.designation %></td>
+                <td>$<%= employee.salary %></td>
+            </tr>
+
+        </tbody>
+    </table>
+ <% } else if(employee != ''){ %>
+
+    <div class="alert alert-danger mt-4">L'Employé n'existe pas avec ce nom.</div>
+
+    <% } %>
+
+</div>
+
+<%- include('partials/footer') -%>

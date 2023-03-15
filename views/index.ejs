@@ -1,0 +1,81 @@
+<%- include('partials/header') -%>
+<!-- inclusion de la partie en-tête de la page -->
+
+<div class="container mx-auto pt-4 text-center">
+  <h1 class="text-4xl font-bold text-gray-800 mb-2">
+    Bienvenue sur notre Système de Gestion d'employés
+  </h1>
+  <p class="text-lg text-gray-600">
+    Vous pouvez utiliser cette application pour gérer les informations des
+    employés de votre entreprise.
+  </p>
+</div>
+
+<div class="container mt-5">
+  <%- include('partials/messages') -%>
+  <!-- inclusion des messages d'alerte pour les opérations -->
+  <table
+    class="table table-bordered"
+    id="dataTable"
+    width="100%"
+    cellspacing="0"
+  >
+    <thead>
+      <tr>
+        <th>Prénom et Nom</th>
+        <!-- colonne pour le prénom et le nom de l'employé -->
+        <th>Fonction</th>
+        <!-- colonne pour la fonction de l'employé -->
+        <th>Salaire</th>
+        <!-- colonne pour le salaire de l'employé -->
+        <th>Opérations</th>
+        <!-- colonne pour les opérations (modifier et supprimer) -->
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Prénom et nom</th>
+        <th>Fonction</th>
+        <th>Salaire</th>
+        <th>Opérations</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      <% employees.forEach((employee)=> { %>
+      <!-- boucle pour afficher les informations de chaque employé -->
+      <tr>
+        <td><%= employee.name %></td>
+        <!-- affichage du prénom et du nom de l'employé -->
+        <td><%= employee.designation %></td>
+        <!-- affichage de la fonction de l'employé -->
+        <td><%= employee.salary %> €</td>
+        <!-- affichage du salaire de l'employé -->
+        <td>
+          <a class="btn btn-primary" href="/edit/<%= employee.id %>"
+            >Modifier</a
+          >
+          <!-- bouton pour modifier l'employé -->
+          <form
+            style="display: inline"
+            action="/delete/<%= employee.id %>?_method=DELETE"
+            method="POST"
+            class="flex justify-center"
+          >
+            <!-- formulaire pour supprimer l'employé -->
+            <input type="hidden" name="_method" value="DELETE" />
+            <button
+              style="cursor: pointer"
+              type="submit"
+              class="btn btn-danger ml-2"
+            >
+              Supprimer
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('partials/footer') -%>
+<!-- inclusion de la partie pied de page -->
